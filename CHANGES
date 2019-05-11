@@ -17,6 +17,11 @@
      'enable-buildtest-c++'.
      [Richard Levitte]
 
+  *) Add target VC-WIN32-UWP, VC-WIN64A-UWP, VC-WIN32-ARM-UWP and
+     VC-WIN64-ARM-UWP in Windows OneCore target for making building libraries
+     for Windows Store apps easier. Also, the "no-uplink" option has been added.
+     [Kenji Mouri]
+
   *) Enable SHA3 pre-hashing for ECDSA and DSA.
      [Patrick Steuer]
 
