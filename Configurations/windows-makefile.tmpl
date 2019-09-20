@@ -446,9 +446,9 @@ install_runtime_libs: build_libs
 	@if "$(INSTALLTOP)"=="" ( $(ECHO) "INSTALLTOP should not be empty" & exit 1 )
 	@$(ECHO) "*** Installing runtime libraries"
 	@"$(PERL)" "$(SRCDIR)\util\mkdir-p.pl" "$(INSTALLTOP)\bin"
-	@if not "$(SHLIBS)"=="" \
+	@if not "$(INSTALL_SHLIBS)"=="" \
 	 "$(PERL)" "$(SRCDIR)\util\copy.pl" $(INSTALL_SHLIBS) "$(INSTALLTOP)\bin"
-	@if not "$(SHLIBS)"=="" \
+	@if not "$(INSTALL_SHLIBPDBS)"=="" \
 	 "$(PERL)" "$(SRCDIR)\util\copy.pl" $(INSTALL_SHLIBPDBS) \
                                         "$(INSTALLTOP)\bin"
 
@@ -456,12 +456,15 @@ install_programs: install_runtime_libs build_programs
 	@if "$(INSTALLTOP)"=="" ( $(ECHO) "INSTALLTOP should not be empty" & exit 1 )
 	@$(ECHO) "*** Installing runtime programs"
 	@"$(PERL)" "$(SRCDIR)\util\mkdir-p.pl" "$(INSTALLTOP)\bin"
-	@"$(PERL)" "$(SRCDIR)\util\copy.pl" $(INSTALL_PROGRAMS) \
-                                        "$(INSTALLTOP)\bin"
-	@"$(PERL)" "$(SRCDIR)\util\copy.pl" $(INSTALL_PROGRAMPDBS) \
-                                        "$(INSTALLTOP)\bin"
-	@"$(PERL)" "$(SRCDIR)\util\copy.pl" $(BIN_SCRIPTS) \
-                                        "$(INSTALLTOP)\bin"
+	@if not "$(INSTALL_PROGRAMS)"=="" \
+	 @"$(PERL)" "$(SRCDIR)\util\copy.pl" $(INSTALL_PROGRAMS) \
+                                         "$(INSTALLTOP)\bin"
+	@if not "$(INSTALL_PROGRAMPDBS)"=="" \
+	 @"$(PERL)" "$(SRCDIR)\util\copy.pl" $(INSTALL_PROGRAMPDBS) \
+                                         "$(INSTALLTOP)\bin"
+	@if not "$(BIN_SCRIPTS)"=="" \
+	 @"$(PERL)" "$(SRCDIR)\util\copy.pl" $(BIN_SCRIPTS) \
+                                         "$(INSTALLTOP)\bin"
 
 uninstall_runtime:
 
