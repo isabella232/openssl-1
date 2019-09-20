@@ -707,7 +707,6 @@ $bin$exeext: $deps
 	IF EXIST $bin$exeext.manifest DEL /F /Q $bin$exeext.manifest
 	\$(LD) \$(LDFLAGS) \$(BIN_LDFLAGS) \$(LDOUTFLAG)$bin$exeext @<<
 $objs
-setargv.obj
 $linklibs\$(BIN_EX_LIBS)
 <<
 	IF EXIST $bin$exeext.manifest \\
